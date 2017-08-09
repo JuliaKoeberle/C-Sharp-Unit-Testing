@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Unit
 {
     /// <summary>
-    /// Calculate Fib number linearly and recursively
+    /// Calculate Fib number linearly and recursively.
     /// </summary>
     public class Fibonacci
     {
