@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
+
 /// <summary>
 /// Static Fakes demo
 /// </summary>
@@ -55,18 +52,12 @@ namespace Unit
     public class BankAccountWithDependencyTests
     {
         private BankAccountWithDependency ba;
-        private NullLog fakeLog;
-
-        [SetUp]
-        public void SetUp()
-        {
-            fakeLog = new NullLog();
-            ba = new BankAccountWithDependency(fakeLog);
-        }
 
         [Test]
         public void DepositIntegrationTest()
         {
+            var fakeLog = new NullLog();
+            ba = new BankAccountWithDependency(fakeLog);
             ba.Deposit(100);
             Assert.That(ba.Balance, Is.EqualTo(200));
         }
