@@ -57,8 +57,12 @@ namespace Unit
             auth.Setup(a => a.Authorized()).Returns(false);
 
             ba = new BankAccountWithMoq(log.Object, auth.Object) { Balance = 100 };
-
-            Assert.That(() => ba.Deposit(100), Throws.TypeOf<AccessViolationException>());
+            Assert.Multiple(() =>
+            {
+                Assert.That(() => ba.Deposit(100), Throws.TypeOf<AccessViolationException>());
+                Assert.That(ba.Balance, Is.EqualTo(100));
+            });
+            
         }
     }
 }
