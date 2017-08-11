@@ -8,6 +8,9 @@ using NUnit.Framework;
 
 namespace Unit
 {
+    /// <summary>
+    /// NUnit tests with Moq
+    /// </summary>
     public interface IAuthorize
     {
         bool Authorized();
@@ -36,6 +39,9 @@ namespace Unit
     {
         private BankAccountWithMoq ba;
 
+        /// <summary>
+        /// Test authorized with moq object injected returning true
+        /// </summary>
         [Test]
         public void DepositAuthorizedTest()
         {
@@ -49,6 +55,9 @@ namespace Unit
             Assert.That(ba.Balance, Is.EqualTo(200));
         }
 
+        /// <summary>
+        /// Test injected autorize with moq object returning false
+        /// </summary>
         [Test]
         public void DisallowDepositIfNotLoggedInTest()
         {
@@ -61,8 +70,7 @@ namespace Unit
             {
                 Assert.That(() => ba.Deposit(100), Throws.TypeOf<AccessViolationException>());
                 Assert.That(ba.Balance, Is.EqualTo(100));
-            });
-            
+            });         
         }
     }
 }
